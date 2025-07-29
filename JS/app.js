@@ -80,3 +80,5 @@ function RPSGame(bestOf) {
     console.log(`>> The winner is Player ${pl1Score > pl2Score ? 1 : 2}`);
   }
 }
+
+RPSGame(3)
