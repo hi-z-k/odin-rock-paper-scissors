@@ -19,3 +19,8 @@ function getComputerChoice(){
     let choice = Math.floor(Math.random()*4);
     return choiceTranslate(choice)
 }
+
+function getHumanChoice(){
+    let choice = prompt("Choose to play(rock/paper/scissor): ")
+    return choice
+}
