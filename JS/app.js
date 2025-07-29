@@ -13,3 +13,9 @@ function choiceTranslate(choice){
         return;
     }
 }
+
+
+function getComputerChoice(){
+    let choice = Math.floor(Math.random()*4);
+    return choiceTranslate(choice)
+}
