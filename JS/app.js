@@ -81,4 +81,4 @@ function RPSGame(bestOf) {
   }
 }
 
-RPSGame(3)
+// RPSGame(3)

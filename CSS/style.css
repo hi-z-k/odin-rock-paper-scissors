@@ -1,0 +1,75 @@
+body * {
+  /* border: 1px solid black; */
+  margin: 0;
+  list-style: none;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+}
+
+.player-option {
+  display: flex;
+  justify-content: center;
+  gap: 70px;
+  margin: 10px 100px;
+}
+
+.option {
+  padding: 60px;
+  border-radius: 15%;
+  
+  border: 0
+  /* border: 5px dashed black; */
+}
+
+.score-board {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(244, 255, 215);
+  gap: 30px;
+}
+.hero-links {
+  display: flex;
+  padding: 30px;
+  gap: 20px;
+}
+.logo {
+  margin-right: auto;
+}
+.player {
+  display: flex;
+  gap: 10px;
+  padding: 10px 0px;
+}
+.player-name {
+  background-color: rgb(255, 242, 0);
+  padding: 10px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-weight: bold;
+  font-size: x-large;
+}
+.player-score,
+.right-hero {
+  display: flex;
+  align-items: center;
+  padding: 0 5px;
+}
+.player-score{
+  font-weight: lighter;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+.player-two {
+  flex-direction: row-reverse;
+}
+
+.logo {
+  font-size: x-large;
+}
+.game-section {
+    margin: 20px 0;
+    width: 700px;
+    align-self: center;
+}
