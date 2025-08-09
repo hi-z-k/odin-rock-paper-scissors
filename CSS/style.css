@@ -13,15 +13,17 @@ body{
   display: flex;
   justify-content: center;
   gap: 70px;
-  margin: 10px 100px;
+  margin: 20px 100px;
 }
 
 .option {
-  padding: 60px;
+  padding: 5px;
   border-radius: 15%;
-  
-  border: 0
-  /* border: 5px dashed black; */
+  background-color: rgb(167, 255, 251);
+  border: 0;
+  color: rgb(70, 68, 0);
+  font-size: medium;
+  font-family: 'Courier New', Courier, monospace;
 }
 
 .score-board {
@@ -30,6 +32,7 @@ body{
   align-items: center;
   background-color: rgb(244, 255, 215);
   gap: 30px;
+  border-bottom: 3px solid;
 }
 .hero-links {
   display: flex;
@@ -72,4 +75,29 @@ body{
     margin: 20px 0;
     width: 700px;
     align-self: center;
+}
+.option-icon{
+  width:140px;
+  padding:10px;
+  margin: 5px 7px;
+}
+.current-round {
+  display: flex;
+  margin: 20px 0;
+  justify-content: space-around;
+  border-bottom: 3px solid;
+}
+.verses{
+  display: flex;
+  justify-content: center;
+  font-size: xx-large;
+  border: 1px solid;
+  border-top: none;
+}
+.round-count {
+  background-color: yellow;
+  padding: 3px 10px;
+}
+.round{
+  margin: 20px 0;
 }
