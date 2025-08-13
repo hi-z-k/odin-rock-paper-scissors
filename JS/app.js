@@ -35,10 +35,7 @@ function RPSwinner(player1, player2) {
   }
 }
 
-function playRound() {
-  let player1 = getHumanChoice();
-  let player2 = getComputerChoice();
-
+function playRound(player1, player2) {
   console.log(`  (${player1} - ${player2}\)\n`);
 
   let winner = RPSwinner(player1, player2);
@@ -53,8 +50,8 @@ function playRound() {
   return winner;
 }
 
-function scoreBoard(score1, score2){
-  return `Player I (${score1} - ${score2}\) Player II`
+function scoreBoard(score1, score2) {
+  return `Player I (${score1} - ${score2}\) Player II`;
 }
 
 function RPSGame(bestOf) {
@@ -64,7 +61,7 @@ function RPSGame(bestOf) {
 
   while (round <= bestOf) {
     console.log(
-      `\nRound ${round} - Scoreboard:\n  ${scoreBoard(pl1Score,pl2Score)}`
+      `\nRound ${round} - Scoreboard:\n  ${scoreBoard(pl1Score, pl2Score)}`
     );
     let winner = playRound();
 
@@ -73,7 +70,7 @@ function RPSGame(bestOf) {
     round++;
   }
 
-  console.log(`\nFinal Results:\n  ${scoreBoard(pl1Score,pl2Score)}`);
+  console.log(`\nFinal Results:\n  ${scoreBoard(pl1Score, pl2Score)}`);
   if (pl1Score === pl2Score) {
     console.log(">> It is a tie");
   } else {
@@ -82,3 +79,37 @@ function RPSGame(bestOf) {
 }
 
 // RPSGame(3)
+function RPSuiGame(bestOf) {
+  const optionMenu = document.querySelector(".player-option");
+  let roundsLeft = bestOf;
+  const roundCount = document.querySelector(".round-count");
+  let round = 1;
+  roundCount.textContent = `Round ${round} of ${bestOf}`;
+  function RPSUI(e) {
+    let btnOption = e.target.getAttribute("id");
+    let userChoice = btnOption;
+    if (
+      userChoice == "rock" ||
+      userChoice == "paper" ||
+      userChoice == "scissor"
+    ) {
+      let computerChoice = getComputerChoice();
+      let winner = playRound(userChoice, computerChoice);
+
+      document.querySelector(".player-one.choice").textContent = userChoice;
+      document.querySelector(".player-two.choice").textContent = computerChoice;
+
+      alert(choiceTranslate(winner));
+      roundsLeft--;
+      if (roundsLeft === 0) {
+        optionMenu.removeEventListener("click", RPSUI);
+      }
+      if (roundsLeft > 0) round++;
+      roundCount.textContent = `Round ${round} of ${bestOf}`;
+    }
+  }
+
+  optionMenu.addEventListener("click", RPSUI);
+}
+
+RPSuiGame(4);

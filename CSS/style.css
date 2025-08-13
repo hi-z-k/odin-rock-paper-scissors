@@ -19,7 +19,7 @@ body{
 .option {
   padding: 5px;
   border-radius: 15%;
-  background-color: rgb(167, 255, 251);
+  background-color: rgb(249, 249, 249);
   border: 0;
   color: rgb(70, 68, 0);
   font-size: medium;
@@ -32,7 +32,7 @@ body{
   align-items: center;
   background-color: rgb(244, 255, 215);
   gap: 30px;
-  border-bottom: 3px solid;
+  /* border-bottom: 3px solid; */
 }
 .hero-links {
   display: flex;
@@ -86,6 +86,7 @@ body{
   margin: 20px 0;
   justify-content: space-around;
   border-bottom: 3px solid;
+  border-top: 3px solid;
 }
 .verses{
   display: flex;
@@ -100,4 +101,8 @@ body{
 }
 .round{
   margin: 20px 0;
+}
+.choice{
+  display: flex;
+  align-items: center;
 }
