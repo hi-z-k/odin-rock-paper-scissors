@@ -112,4 +112,9 @@ function RPSuiGame(bestOf) {
   optionMenu.addEventListener("click", RPSUI);
 }
 
+
+
+
+
+
 RPSuiGame(4);
