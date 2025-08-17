@@ -114,7 +114,50 @@ function RPSuiGame(bestOf) {
 
 
 
+//  Start-game UI to game UI
+
+const startGame = document.querySelector(".start-game-button")
+const roundMax= document.querySelector(".user-input-type")
 
 
+// when the button is clicked 
+// it removes the div and replace it with the game one
 
-RPSuiGame(4);
+function playerInScoreBoard(node, name, uniqueClass){
+   const player1 = document.createElement("div")
+      player1.classList.add("player",uniqueClass)
+
+      const player1Name = document.createElement("div")
+        player1Name.classList.add("player-name")
+        player1Name.textContent = name
+      player1.appendChild(player1Name)
+
+      const player1Score = document.createElement("div")
+        player1Score.classList.add("player-score")
+        player1Score.textContent = "1"
+      player1.appendChild(player1Score)
+    node.appendChild(player1)
+}
+function createScoreBoard(node){
+    const scoreBoard = document.createElement("div")
+      scoreBoard.classList.add("score-board")
+        playerInScoreBoard(scoreBoard,"p1","player-one")
+        
+        const vsSign = document.createElement("div")
+          vsSign.classList.add(".dash")
+          vsSign.textContent = "—"
+        scoreBoard.appendChild(vsSign)
+        
+        playerInScoreBoard(scoreBoard,"p2","player-two")
+      node.append(scoreBoard)
+}
+
+function createUI(){
+  const game = document.createElement("div")
+    game.classList.add("game-section")
+    createScoreBoard(game)
+  document.body.appendChild(game) 
+}
+
+startGame.addEventListener("click",createUI)
+// RPSuiGame(4);
