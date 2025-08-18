@@ -152,12 +152,51 @@ function createScoreBoard(node){
       node.append(scoreBoard)
 }
 
+function createCurrentRound(node){
+  const currentRound = document.createElement("div")
+    currentRound.classList.add("current-round")
+
+    const player1Choice = document.createElement("div")
+    player1Choice.classList.add("player-one", "choice")
+
+    const round = document.createElement("div")
+      round.classList.add("round")
+      const roundCount = document.createElement("div")
+        roundCount.classList.add("round-count")
+        roundCount.textContent = "Round"
+      const verses = document.createElement("div")
+        verses.classList.add("verses")
+        verses.textContent = "Vs"
+    round.appendChild(roundCount)
+    round.appendChild(verses)
+
+
+    const player2Choice = document.createElement("div")
+    player2Choice.classList.add("player-two", "choice")
+    
+  currentRound.appendChild(player1Choice)
+  currentRound.appendChild(round)
+  currentRound.appendChild(player2Choice)
+
+
+  node.appendChild(currentRound)
+}
+
 function createUI(){
   const game = document.createElement("div")
     game.classList.add("game-section")
     createScoreBoard(game)
-  document.body.appendChild(game) 
+    const mainSection = document.createElement("div")
+    mainSection.classList.add("main-section")
+
+    createCurrentRound(mainSection)
+
+    game.appendChild(mainSection)
+
+  const screenGame = document.querySelector(".game-tabs")
+  screenGame.prepend(game) 
 }
 
 startGame.addEventListener("click",createUI)
-// RPSuiGame(4);
+// RPSuiGame(4)
+  
