@@ -86,7 +86,7 @@ function RPSuiGame(bestOf) {
   let round = 1;
   roundCount.textContent = `Round ${round} of ${bestOf}`;
   function RPSUI(e) {
-    let btnOption = e.target.getAttribute("id");
+    let btnOption = e.target.getAttribute("class");
     let userChoice = btnOption;
     if (
       userChoice == "rock" ||
@@ -144,7 +144,7 @@ function createScoreBoard(node){
         playerInScoreBoard(scoreBoard,"p1","player-one")
         
         const vsSign = document.createElement("div")
-          vsSign.classList.add(".dash")
+          vsSign.classList.add("dash")
           vsSign.textContent = "—"
         scoreBoard.appendChild(vsSign)
         
@@ -158,6 +158,7 @@ function createCurrentRound(node){
 
     const player1Choice = document.createElement("div")
     player1Choice.classList.add("player-one", "choice")
+    choice(player1Choice,"paper","Y")
 
     const round = document.createElement("div")
       round.classList.add("round")
@@ -167,12 +168,15 @@ function createCurrentRound(node){
       const verses = document.createElement("div")
         verses.classList.add("verses")
         verses.textContent = "Vs"
+    
+    
     round.appendChild(roundCount)
     round.appendChild(verses)
 
 
     const player2Choice = document.createElement("div")
     player2Choice.classList.add("player-two", "choice")
+    choice(player2Choice,"rock","W")
     
   currentRound.appendChild(player1Choice)
   currentRound.appendChild(round)
@@ -182,6 +186,44 @@ function createCurrentRound(node){
   node.appendChild(currentRound)
 }
 
+
+function createOptionSection(node, color){
+  const playerOption = document.createElement("div")
+    playerOption.classList.add("player-option")
+    option(playerOption,"rock",color)
+    option(playerOption,"paper",color)
+    option(playerOption,"scissor",color)
+  node.appendChild(playerOption)
+}
+
+function choice(node,name,color){
+  option(node,name,color,"div")
+}
+
+function option(node,name,color,element="button"){
+   const optionElement = document.createElement(element)
+   let classAdd = ["option"]
+    if (element === "div"){
+      classAdd.push("choice")
+    }
+    classAdd.forEach((cls) => optionElement.classList.add(cls))
+    optionElement.classList.add(name)
+      const capitalizedName = name[0].toUpperCase()+name.slice(1)
+      const imageIcon = document.createElement("img")
+        imageIcon.classList.add("option-icon", name)
+        imageIcon.src = `../Images/${color} ${name}.png`
+        imageIcon.alt = capitalizedName
+    optionElement.prepend(imageIcon)
+    if (element === "button"){
+      const text = document.createElement("div")
+      text.classList.add("option-name-div")
+      text.textContent = capitalizedName
+      optionElement.appendChild(text)
+    }
+  node.appendChild(optionElement)
+}
+
+
 function createUI(){
   const game = document.createElement("div")
     game.classList.add("game-section")
@@ -190,13 +232,17 @@ function createUI(){
     mainSection.classList.add("main-section")
 
     createCurrentRound(mainSection)
-
+    createOptionSection(mainSection,"Y")
     game.appendChild(mainSection)
 
   const screenGame = document.querySelector(".game-tabs")
   screenGame.prepend(game) 
 }
 
-startGame.addEventListener("click",createUI)
-// RPSuiGame(4)
+
+startGame.addEventListener("click",()=>{
+  document.querySelector(".start-game-section").style.display = "none"
+  createUI()
+})
+RPSuiGame(4)
   
