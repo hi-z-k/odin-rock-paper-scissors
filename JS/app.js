@@ -19,7 +19,7 @@ function playerInScoreBoard(node, name, color, uniqueClass){
 
       const player1Score = document.createElement("div")
         player1Score.classList.add("player-score")
-        player1Score.textContent = "1"
+        player1Score.textContent = "0"
       player1.appendChild(player1Score)
     node.appendChild(player1)
 }
@@ -50,15 +50,19 @@ function createCurrentRound(node, color){
 
     const round = document.createElement("div")
       round.classList.add("round")
-      const roundCount = document.createElement("div")
-        roundCount.classList.add("round-count")
-        roundCount.textContent = "Round"
+      const roundText = document.createElement("div")
+        roundText.classList.add("round-text")
+        roundText.textContent = "Round"
+        const roundCount = document.createElement("span")
+        roundCount.classList.add("round-count","round-text")
+        roundCount.textContent = "1"
+      roundText.appendChild(roundCount)
       const verses = document.createElement("div")
         verses.classList.add("verses")
         verses.textContent = "Vs"
     
     
-    round.appendChild(roundCount)
+    round.appendChild(roundText)
     round.appendChild(verses)
 
     if (color == "W"){
@@ -175,28 +179,84 @@ function declareWinner(p1,p2){
   return winner
 }
 
-startGame.addEventListener("click", () => {
-  document.querySelector(".start-game-section").style.display = "none";
-  
-  // who can reach the score first
-  // the score gets updated - takes in player and num and takes care of adding and updating
-  // rounds just get counted - same as score
-  createUI("Hizkeal","W");
+function scoreFirst(maxScore){
+  if (playerScore("one") == maxScore) return 1
+  else if (playerScore("two") == maxScore) return 2
+  else return false
+}
 
+function currentRound(){
+  return parseInt(document.querySelector(`.round-count`).textContent)
+}
+
+
+function roundIncrement(){
+  const roundCount = document.querySelector(`.round-count`)
+  let rounds = parseInt(roundCount.textContent)
+  roundCount.textContent = ++rounds
+}
+
+
+function playerScoreObj(playerNum){
+  return document.querySelector(`.player-${playerNum} .player-score`)
+}
+function playerScore(playerNum){
+  const plObj = playerScoreObj(playerNum)
+  return parseInt(plObj.textContent)
+}
+
+
+function scoreUpdate(winnerPlayer){
+  if (winnerPlayer === 1){
+    winnerPlayer = "one"
+  }
+  else if (winnerPlayer === 2){
+    winnerPlayer = "two"
+  }
+  else return
+  const pScore = playerScoreObj(winnerPlayer)
+  let score = parseInt(pScore.textContent)
+  pScore.textContent = ++score
+}
+
+function removeUI(){
+  const tab = document.querySelector(".game-section")
+  tab.remove()
+}
+
+function oppositeColor(color){
+  if (color === "Y") return "W"
+  else if (color === "W") return "Y"
+}
+
+
+function RPSGAME(userName,color, maxScore){
+  let gameWinner = false
+  const computerColor = oppositeColor(color) 
+  const startSection = document.querySelector(".start-game-section")
+  startSection.style.display = "none"
+  createUI(userName,color);
   const playerOptions = document.querySelector(".player-option")
   playerOptions.addEventListener("click",(e)=>{
     let p1Choice = optionOf(e)
     if (!p1Choice) return
     let p2Choice = getComputerChoice()
-
-    choiceUpdate("one",p1Choice,"W")
-    choiceUpdate("two", p2Choice, "Y")
-    
+    choiceUpdate("one",p1Choice,color)
+    choiceUpdate("two", p2Choice, computerColor)
     let winner = declareWinner(p1Choice,p2Choice)
-    
-    })
+    scoreUpdate(winner)
+    roundIncrement()
+    gameWinner = scoreFirst(maxScore)
+    if (gameWinner){
+      alert(`Player ${gameWinner} won the game`)
+      removeUI()
+      startSection.style.display = "flex"
+    }
+    });
+}
+startGame.addEventListener("click", ()=>{RPSGAME("HIZK","Y",3)})
 
-});
+
 
 // return the verses text back to Vs after some timeout
 // radio buttons as an option for button type
