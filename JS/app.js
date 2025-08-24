@@ -95,7 +95,7 @@ function option(node, name, color, element = "button") {
   const capitalizedName = name[0].toUpperCase() + name.slice(1);
   const imageIcon = document.createElement("img");
   imageIcon.classList.add("option-icon", name);
-  imageIcon.src = `/Images/${color} ${name}.png`;
+  imageIcon.src = `/odin-rock-paper-scissors/Images/${color}-${name}.png`;
   imageIcon.alt = capitalizedName;
   optionElement.prepend(imageIcon);
   if (element === "button") {
@@ -156,7 +156,7 @@ function choiceUpdate(playerNum, choice, color) {
   const playerChoice = document.querySelector(
     `.current-round .player-${playerNum} .choice img`
   );
-  playerChoice.src = `../Images/${color} ${choice}.png`;
+  playerChoice.src = `/odin-rock-paper-scissors/Images/${color}-${choice}.png`;
 }
 
 function declareWinner(p1, p2) {
