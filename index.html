@@ -15,18 +15,38 @@
       </ul>
     </div>
     <div class="start-game-section">
+      <div class="game-name">ROCK PAPER SCISSOR</div>
       <div class="user-input user-name">
         <div class="user-name-input">Player Name</div>
-        <input class="user-input-type" type="text">
+        <input
+          class="username-input user-input-type"
+          type="text"
+          placeholder="username"
+        />
       </div>
       <div class="user-input user-max-score">
         <div class="round-num-input">Maximum Score</div>
-        <input class="user-input-type" type="text">
+        <input
+          class="score-input user-input-type"
+          type="number"
+          placeholder="score"
+        />
       </div>
+      <div class="color-choice">
+        <div class="user-color-text">Color option</div>
+        <div class="user-color-radio">
+          <div class="radio-item">
+            <input type="radio" name="color" value="Y" /> Yellow
+          </div>
+          <div class="radio-item">
+            <input type="radio" name="color" value="W" /> White
+          </div>
+        </div>
+      </div>
+
       <button class="start-game-button">Start Game</button>
     </div>
-    <div class="game-tabs">
-    </div>
+    <div class="game-tabs"></div>
     <script src="JS/app.js"></script>
   </body>
 </html>
