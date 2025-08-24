@@ -95,7 +95,7 @@ function option(node, name, color, element = "button") {
   const capitalizedName = name[0].toUpperCase() + name.slice(1);
   const imageIcon = document.createElement("img");
   imageIcon.classList.add("option-icon", name);
-  imageIcon.src = `../Images/${color} ${name}.png`;
+  imageIcon.src = `/Images/${color} ${name}.png`;
   imageIcon.alt = capitalizedName;
   optionElement.prepend(imageIcon);
   if (element === "button") {
