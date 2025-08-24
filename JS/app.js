@@ -265,6 +265,9 @@ function RPSGAME(userName, color, maxScore) {
     }
   });
 }
+const newgameLink = document.querySelector(".right-hero.new-game")
+newgameLink.addEventListener("click", newGame)
+
 startGame.addEventListener("click", () => {
   let data = inputs();
   if (data) {
